@@ -1,85 +1,189 @@
 インストール方法
 =================
 
-1. Unity(ver:2022.3.4f1)のインストール
----------------------------------------
+.. note::
 
-使用しているPCのOSに応じて以下の通りUnityHubをインストールする
+   本ページの内容は、OperaSim-AGX リポジトリの ``main`` ブランチの状態を前提としています。
+   Unity / AGX Dynamics のバージョン等は、今後の更新に応じて適宜読み替えてください。
 
+1. Unity と AGX Dynamics のインストール
+----------------------------------------
 
-- windows 又は Macの場合: https://unity3d.com/jp/get-unity/download
-- Linuxの場合(Linux版は動作確認を実施しておりません): https://unity3d.com/get-unity/download
+.. warning::
 
-2. Projectファイルの開き方とUnity Editorのダウンロード
-------------------------------------------------------
+   OperaSim-AGX を実行するには、Unity 本体に加えて **AGX Dynamics のライセンス** が必須です。
 
-- UnityHubを起動し、画面右上の「追加」から `OperaSim-PhysX` (Githubから自身のPCにクローン又はダウンロードしたもの)を選択し、クリックする（初回起動時には数分程度の時間がかかります）。クリックした際に指定のUnity Editorを選択しインストールする。
+- Unity Hub をインストールする
 
-3. Sceneファイルの選択
-----------------------
+  - Windows / macOS の場合:
+    https://unity3d.com/jp/get-unity/download
+  - Linux の場合:
+    https://unity3d.com/get-unity/download
 
-- デモ用のサンプルSceneファイルが `Asset/Scenes/SampleScene.unity` にあるので、これを開く.  
+    (Linux 版での動作確認は現時点では十分には行っていません)
 
-4. ROS-TCP-Connectorの設定
---------------------------
+- Unity Hub から、次のバージョンの Unity Editor をインストールする
 
-- UnityEditorの上部ツールバーからRobotics > ROS Settingを開き"ROS IP Address", "ROS Port"のところにROS側のIPアドレスおよびポート番号(defaultは10000)を入力する
-- もしROS2を利用する場合は"Protocol"のところを"ROS1"->"ROS2"へ変更する
+  - Unity 2022.3.62f1
+
+- AGX Dynamics をインストールし、ライセンスファイルを取得する
+
+  - 例: AGX 2.38.0.1 (x64 VS2022)
+  - 利用するモジュール:
+
+    - AGX Dynamics Core
+    - AGX Dynamics Terrain
+    - AGX Dynamics Granular
+    - AGX Dynamics Tracks
+
+  - インストール方法やライセンスの取得方法は `AGX Dynamics のマニュアル <https://www.algoryx.se/documentation/complete/agx/tags/latest/doc/UserManual/source/legal_notice.html>`_ に従ってください。
+
+2. OperaSim-AGX プロジェクトの取得と Unity Editor の起動
+----------------------------------------------------------
+
+1. GitHub から OperaSim-AGX を取得する
+
+   .. code-block:: console
+
+      $ cd (作業ディレクトリ)
+      $ git clone https://github.com/pwri-opera/OperaSim-AGX.git
+
+   あるいは GitHub の画面から ZIP をダウンロードして展開しても構いません。
+
+2. Unity Hub を起動し、画面右上の「追加」ボタンから
+   クローン／展開した ``OperaSim-AGX`` フォルダを選択する。
+
+   - 初回起動時には Unity Editor のインストールやライブラリの生成のため、
+     数分程度かかる場合があります。
+   - 指定の Unity Editor (2022.3.62f1) がインストールされていない場合は、
+     このタイミングで自動的にインストールを促されます。
+
+3. 「OperaSim-AGX」プロジェクトを Unity Hub のリストから選択し、
+   Unity Editor を起動する。
+
+3. Scene ファイルの選択
+------------------------
+
+Unity Editor 起動後、シーンに建設機械モデルが表示されていない場合は、
+プロジェクトウィンドウから ``Assets/Scenes/MainScene.unity`` をダブルクリックしてロードします。
+
+4. AGX Dynamics ライセンスファイルの配置
+-----------------------------------------
+
+AGX Dynamics のインストール時に取得したライセンスファイル
+(通常は ``.lic`` 拡張子) を Unity プロジェクト内の所定の場所にコピーします。
+
+- コピー先の例:
+
+  - ``Assets/AGXUnity/Plugins/x86_64``
+
+Unity Editor を再起動し、AGX Unity のインスペクタ等で
+ライセンスが認識されていることを確認してください。
+
+5. ROS-TCP-Connector の設定
+---------------------------
+
+.. image:: media/connection.png
+
+OperaSim-AGX と ROS (ROS 1 / ROS 2) の通信には
+`ROS-TCP-Connector <https://github.com/Unity-Technologies/ROS-TCP-Connector>`_ を使用します。
+
+Unity プロジェクトを初めて開いた際に必要なパッケージが自動的に追加されない場合は、
+Package Manager から手動で追加してください。
+
+- 使用する主なパッケージ (参考)
+
+  - `AGXUnity`_: 5.0.1
+  - `ROS-TCP-Connector`_: 0.7.0
+  - `URDF-Importer`_: 0.5.2
+  - `UnitySensors`_: 開発版
+
+.. _AGXUnity: https://github.com/Algoryx/AGXUnity
+.. _ROS-TCP-Connector: https://github.com/Unity-Technologies/ROS-TCP-Connector
+.. _URDF-Importer: https://github.com/Unity-Technologies/URDF-Importer
+.. _UnitySensors: https://github.com/algoryx/AGXUnitySensorSamples  # 適宜修正
+
+ROS 側との接続設定は、Unity Editor 上部のメニューから行います。
+
+1. メニューバーから :menuselection:`Robotics --> ROS Setting` を開く。
+2. ``ROS IP Address`` と ``ROS Port`` に、ROS 側 PC の IP アドレスおよびポート番号を設定する。
+   - デフォルトのポート番号は ``10000`` です。
+3. ROS 2 を利用する場合は、``Protocol`` を ``ROS1`` から ``ROS2`` に変更する。
 
 .. image:: https://user-images.githubusercontent.com/24404939/159395478-46617a2f-b05c-4227-9fc9-d93712dc4b9f.jpg
+   :alt: ROS Setting の画面イメージ
 
-5. ROSとの連携方法
-------------------
+6. ROS-TCP-Endpoint のセットアップ
+-----------------------------------
 
-.. image:: https://user-images.githubusercontent.com/24404939/161001271-0f81d211-4c8e-4341-8f9f-86a02e958c4d.jpg
+ROS 側では、Unity と通信するために
+`ROS-TCP-Endpoint <https://github.com/Unity-Technologies/ROS-TCP-Endpoint>`_ をセットアップします。
+初回のみ、以下の手順でパッケージをクローン・ビルドしてください。
 
-- 【初回のみ】ROS側で `ROS-TCP-Endpoint <https://github.com/Unity-Technologies/ROS-TCP-Endpoint>`_ パッケージをcloneし、buildとセットアップを行う。
+ROS 1 の場合
+^^^^^^^^^^^^
 
-    ROS 1の場合:
+.. code-block:: console
 
-        .. code-block:: console
+   $ cd (rosワークスペース)/src
+   $ git clone https://github.com/Unity-Technologies/ROS-TCP-Endpoint.git
+   $ cd ./ROS-TCP-Endpoint/
+   $ sudo chmod +x setup.py
+   $ ./setup.py
+   $ catkin build ros_tcp_endpoint
+   $ source ../../devel/setup.bash
 
-            $ cd (rosワークスペース)/src
-            $ git clone https://github.com/Unity-Technologies/ROS-TCP-Endpoint.git
-            $ cd ./ROS-TCP-Endpoint/
-            $ sudo chmod +x setup.py
-            $ ./setup.py
-            $ catkin build ros_tcp_endpoint
-            $ source ../../devel/setup.bash
+ROS 2 の場合
+^^^^^^^^^^^^
 
-    ROS 2の場合:
+.. code-block:: console
 
-        .. code-block:: console
+   $ cd (ros2ワークスペース)/src
+   $ git clone -b main-ros2 https://github.com/Unity-Technologies/ROS-TCP-Endpoint.git
+   $ cd ./ROS-TCP-Endpoint/
+   $ sudo chmod +x setup.py
+   $ ./setup.py
+   $ cd ../../
+   $ colcon build --packages-select ros_tcp_endpoint
+   $ . install/setup.bash
 
-            $ cd (ros2ワークスペース)/src
-            $ git clone -b main-ros2 https://github.com/Unity-Technologies/ROS-TCP-Endpoint.git
-            $ cd ./ROS-TCP-Endpoint/
-            $ sudo chmod +x setup.py
-            $ ./setup.py
-            $ cd ../../
-            $ colcon build --packages-select ros_tcp_endpoint
-            $ . install/setup.bash
+7. ROS との連携の起動例
+------------------------
 
-- ROS側でendpoint.launchを実行する
+1. ROS 側で通信エンドポイントを起動します。
 
-    .. code-block:: console
+   ROS 1 の場合:
 
-        $ roslaunch ros_tcp_endpoint endpoint.launch
+   .. code-block:: console
 
-- Unity Editor上部の実行ボタンをクリックする
+      $ roslaunch ros_tcp_endpoint endpoint.launch
 
-    .. image:: https://user-images.githubusercontent.com/24404939/159396113-993ff0b2-d2bb-4567-ac68-0eafc9f524ac.png
+   ROS 2 の場合:
 
-- ROS側で、対応する建機のunity用launchファイルを起動する
+   .. code-block:: console
 
-    - 油圧ショベル
+      $ ros2 launch ros_tcp_endpoint endpoint.launch
 
-        .. code-block:: console
+   (必要に応じて ``--ros-args -p ROS_IP:=<your IP>`` 等の引数を指定してください)
 
-            $ roslaunch zx120_unity zx120_standby.launch
+2. Unity Editor で Play ボタンを押し、シミュレーションを開始します。
 
-    - クローラダンプ
+   .. image:: https://user-images.githubusercontent.com/24404939/159396113-993ff0b2-d2bb-4567-ac68-0eafc9f524ac.png
+      :alt: Unity Editor の再生ボタン
 
-        .. code-block:: console
+3. 建設機械モデルに対応する ROS 2 パッケージ側の Unity 連携用 launch を起動します。
 
-            $ roslaunch ic120_unity ic120_standby.launch
+   例: 油圧ショベル ZX120 (``zx120_ros2``) の場合
+
+   .. code-block:: console
+
+      $ ros2 launch zx120_unity zx120_standby.launch.py
+
+   例: クローラダンプ IC120 (``ic120_ros2``) の場合
+
+   .. code-block:: console
+
+      $ ros2 launch ic120_unity ic120_standby_ekf.launch.py
+
+上記が正常に動作していれば、OperaSim-AGX 上の建設機械と ROS 側ノード群との間で
+トピック通信が行われ、コマンド送信・状態取得が可能になります。

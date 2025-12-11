@@ -8,6 +8,9 @@ docs/.buildinfo
 docs/_static/
 docs/_sources/
 
+# Temporary files for drawing
+docs/media/*.pptx
+
 # Python virtual environments
 .venv/
 venv/
