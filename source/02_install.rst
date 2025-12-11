@@ -61,11 +61,16 @@
 3. 「OperaSim-AGX」プロジェクトを Unity Hub のリストから選択し、
    Unity Editor を起動する。
 
+.. .. image:: https://user-images.githubusercontent.com/82022162/159667401-9f5f0393-3e23-4178-98b4-90408fa83305.jpg
+
+.. .. image:: https://user-images.githubusercontent.com/82022162/159667974-c66c51f0-c067-4c7b-a434-2eecf9e2051d.jpg
 3. Scene ファイルの選択
 ------------------------
 
 Unity Editor 起動後、シーンに建設機械モデルが表示されていない場合は、
 プロジェクトウィンドウから ``Assets/Scenes/MainScene.unity`` をダブルクリックしてロードします。
+
+.. image:: https://user-images.githubusercontent.com/82022162/159667970-b24fbc10-f4e8-4acf-8290-d6a541fd2efc.jpg
 
 4. AGX Dynamics ライセンスファイルの配置
 -----------------------------------------
@@ -76,6 +81,8 @@ AGX Dynamics のインストール時に取得したライセンスファイル
 - コピー先の例:
 
   - ``Assets/AGXUnity/Plugins/x86_64``
+
+.. image:: https://user-images.githubusercontent.com/82022162/159667980-0426a5a0-f920-4a50-99b3-0b70ddc442c2.jpg
 
 Unity Editor を再起動し、AGX Unity のインスペクタ等で
 ライセンスが認識されていることを確認してください。
