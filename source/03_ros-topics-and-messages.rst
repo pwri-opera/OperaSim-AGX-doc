@@ -286,7 +286,7 @@ Unity → ROS (建機の情報)
      - メッセージ型
      - 備考
    * - 各関節の角度, 角速度
-     - ``/車体名/joint_state``
+     - ``/車体名/joint_states``
      - ``sensor_msgs/msg/JointState``
      - 以下の順で情報が格納される::
 
