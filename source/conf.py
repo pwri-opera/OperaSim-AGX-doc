@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = '機械土工シミュレータプロトタイプ開発報告書'
+project = 'OperaSim-AGX'
 copyright = 'PWRI'
 author = 'PWRI'
 

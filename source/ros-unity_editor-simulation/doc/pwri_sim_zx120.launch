@@ -1,0 +1,10 @@
+<launch>
+    <node name="hello_test1" pkg="hello" type="talker_zx120_boom.py" output="screen">
+    </node>
+    <node name="hello_test2" pkg="hello" type="talker_zx120_arm.py" output="screen">
+    </node>
+    <node name="hello_test3" pkg="hello" type="talker_zx120_bucket.py" output="screen">
+    </node>
+    <node name="hello_test4" pkg="hello" type="talker_zx120_swing.py" output="screen">
+    </node>
+</launch>

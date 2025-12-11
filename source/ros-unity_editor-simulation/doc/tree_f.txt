@@ -1,0 +1,26 @@
+.
+
+├── catkin_ws
+│   ├── build
+├── ./CMakeLists.txt
+├── ./launch
+│   ├── ./launch/image_.launch
+│   ├── ./launch/pwri_sim-01.launch
+│   ├── ./launch/pwri_sim.launch
+│   └── ./launch/pwri_sim_zx120.launch
+├── ./msg
+│   ├── ./msg/MyString.msg
+│   └── ./msg/geometry_msgs.msg
+├── ./package.xml
+├── ./src
+│   ├── ./src/move_param_data_01.txt
+│   ├── ./src/talker_zx120_arm.py
+│   ├── ./src/talker_zx120_boom-01.py
+│   ├── ./src/talker_zx120_boom-02.py
+│   ├── ./src/talker_zx120_boom-03.py
+│   ├── ./src/talker_zx120_boom.py
+│   ├── ./src/talker_zx120_bucket.py
+│   ├── ./src/talker_zx120_swing.py
+│   └── ./src/talker_zx120_tracks.py
+
+3 directories, 50 files
