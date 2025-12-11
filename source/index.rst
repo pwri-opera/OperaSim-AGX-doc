@@ -13,14 +13,10 @@ OperaSim-AGX
    01_introduction
    02_install
    03_ros-topics-and-messages
-   04_parameter-tunning
    05_construction_machine_model
    06_sensor_model
+   04_parameter-tuning
    07_import_3dmodel
-
-   11_system_overview
-   12_usage
-   13_model_overview
    14_simulation_features
 
 Indices and tables
