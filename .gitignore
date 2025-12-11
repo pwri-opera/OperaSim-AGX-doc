@@ -9,7 +9,7 @@ docs/_static/
 docs/_sources/
 
 # Temporary files for drawing
-docs/media/*.pptx
+source/media/*.pptx
 
 # Python virtual environments
 .venv/
