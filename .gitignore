@@ -1,1 +1,25 @@
 build
+
+# Sphinx build output
+docs/_build/
+docs/*.doctree
+docs/.doctrees/
+docs/.buildinfo
+docs/_static/
+docs/_sources/
+
+# Python virtual environments
+.venv/
+venv/
+
+# VSCode settings
+.vscode/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# OS-specific files
+.DS_Store
+Thumbs.db
